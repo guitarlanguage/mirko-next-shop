@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Title from '../components/Title';
 
 function HomePage() {
   return (
@@ -6,8 +7,8 @@ function HomePage() {
       <Head>
         <title>Next Shop</title>
       </Head>
-      <main>
-        <h1>Next Shop</h1>
+      <main className="p-2 px-4 py-6">
+       <Title>Next Shop</Title>
       </main>
     </>
   )
