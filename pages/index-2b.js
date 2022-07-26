@@ -1,19 +1,20 @@
-//option 1b: fetch products on the server sie 
-//but with incremental static regeneration
+//option 1 fetch products client side with useEffect
+// from an internal api 
+
 
 import Head from 'next/head'
 import Title from '../components/Title';
 import { getProducts } from '../lib/products';
 
-export async function getStaticProps() {
-  const products = await getProducts()
-  return { 
-    props: { products },
-    revalidate: 5 * 60, // seconds 
-  };
-}
-
 function HomePage({ products }) {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const response = await fetch('/api/products');
+      const products = await response.json();
+      setProducts(products);
+    })
+  }, []);
   console.log('[HomePage] render:', products);
   return (
     <>

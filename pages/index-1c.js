@@ -1,15 +1,14 @@
 //option 1b: fetch products on the server sie 
-//but with incremental static regeneration
+//but with get server side props
 
 import Head from 'next/head'
 import Title from '../components/Title';
 import { getProducts } from '../lib/products';
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const products = await getProducts()
   return { 
-    props: { products },
-    revalidate: 5 * 60, // seconds 
+    props: { products }
   };
 }
 
